@@ -33,6 +33,6 @@ $_INFO['website']['title'] = 'SQLBans Web Interface';
 /*
  * Comment out this line when configured.
  */
-define('SQLBANS_CONFIGURED', false);
+#define('SQLBANS_CONFIGURED', false);
 
 ?>
