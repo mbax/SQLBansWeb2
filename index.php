@@ -24,6 +24,13 @@
               <span class="icon-bar"></span>
             </a>
             <a class="brand" href="#">SQLBans Web</a>
+            <?php 
+            	if(isset($_SESSION['sqlbans_user']) && isset($_SESSION['sqlbans_bancode']) && $_SESSION['sqlbans_user_ip'] == $_SERVER['REMOTE_ADDR']){
+            ?>
+            	<ul class="nav pull-right">
+	            	<li><a href="pages/check_login.php?logout=true">Logout</a></li>
+            	</ul>
+           <?php } ?>
           </div>
         </div><!-- /navbar-inner -->
       </div><!-- /navbar -->
@@ -34,10 +41,12 @@
 			/*
 			 * Show Login Page
 			 */
-			if(!isset($_SESSION['sqlbans_user']) && !isset($_SESSION['sqlbans_user_ip'])){
+			if(!isset($_SESSION['sqlbans_user']) || !isset($_SESSION['sqlbans_user_ip']) || !isset($_SESSION['sqlbans_bancode'])){
 				include_once('pages/login.php');
 			}else if($_SESSION['sqlbans_user_ip'] != $_SERVER['REMOTE_ADDR']){
 				include_once('pages/login.php');
+			}else if(isset($_SESSION['sqlbans_user']) && isset($_SESSION['sqlbans_bancode']) && $_SESSION['sqlbans_user_ip'] == $_SERVER['REMOTE_ADDR']){
+				include_once('pages/appeal.php');
 			}
 		
 		?>
